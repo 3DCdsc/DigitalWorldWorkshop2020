@@ -7,12 +7,13 @@ def removeWhitespaces(target):
             start = i
             break
     while end >= 1:
-        if target[end-1] != " ":
+        if target[end - 1] != " ":
             break
         end -= 1
     return target[start:end]
 
 
+# test cases
 print(removeWhitespaces("  test ndfsfdf/../8       ") == "test ndfsfdf/../8")
 print(removeWhitespaces("  testsdfsdfsdfsdfsdf       ") == "testsdfsdfsdfsdfsdf")
 print(removeWhitespaces("       ") == "")
@@ -25,33 +26,38 @@ print(removeWhitespaces(" 34985734 ") == "34985734")
 
 
 import string
+
 # function to remove leading and trailling punctuations
 def removePunctuations(target):
-        start = 0
-        end = len(target)
-        for i in range(end):
-            if target[i] in string.ascii_letters:
-                start = i
-                break
-        while end >= 1:
-            if target[end-1] in string.ascii_letters:
-                break
-            end -= 1
-        return target[start:end]
+    start = 0
+    end = len(target)
+    for i in range(end):
+        if target[i] in string.ascii_letters:
+            start = i
+            break
+    while end >= 1:
+        if target[end - 1] in string.ascii_letters:
+            break
+        end -= 1
+    return target[start:end]
 
+
+# test cases
 print(removePunctuations("{thisidfhsdf}") == "thisidfhsdf")
 print(removePunctuations("{thisidfhsdf") == "thisidfhsdf")
 print(removePunctuations("thisidfhsdf.") == "thisidfhsdf")
-print(removePunctuations("thisidfhsdf\'") == "thisidfhsdf")
+print(removePunctuations("thisidfhsdf'") == "thisidfhsdf")
 
+# combining two functions
 def stripForWord(word):
     return word.lower().strip().strip(string.punctuation).capitalize()
 
 
+# test cases
 print(stripForWord("       {thisidfhsdf}") == "Thisidfhsdf")
 print(stripForWord("{thisidfhsdf     ") == "Thisidfhsdf")
 print(stripForWord("   'thisidfhsdf'  ") == "Thisidfhsdf")
-print(stripForWord("thisdfhsdf\'") == "Thisdfhsdf")
+print(stripForWord("thisdfhsdf'") == "Thisdfhsdf")
 print(stripForWord("“sword?") == "sword")
 print(stripForWord("“sword?"))
 print(stripForWord("“；‘sword?") == "sword")

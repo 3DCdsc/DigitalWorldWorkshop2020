@@ -1,43 +1,62 @@
 import string
 
 # Open text file in reading mode
-file = "J. K. Rowling - Harry Potter and the Chamber of Secrets.txt"
-document = open(file, "r")
-# initilise empty dictionary
+file = "Doc1.txt"
+content = open(file, "r")
+
+# initialise empty dictionary
 dict = dict()
+# initialise a total word counter
 totalWordCount = 0
 
-def stripForWord(word):
+
+def stripWord(word):
+    """
+    Make string lower case
+    Remove leading and trailing whitespeces and Punctuations
+    """
     return word.lower().strip().strip(string.punctuation)
 
 
-for line in document:
+# traversing content line by line
+for line in content:
+    # traversing strings splitted by string.split()
     for word in line.split():
-        # skip none
-        if word == "":
+        # skip empty strings, None, and whitespece
+        if word in ("", " ", None):
             continue
-        # counting total words
+
+        # increment total word count by 1
         totalWordCount += 1
-        # clean up
-        word = stripForWord(word)
 
+        # clean up the word
+        word = stripWord(word)
 
-        # counting unique word
-        try:
+        # if the word already exist in the dictionary
+        if dict[word]:
+            # increment the word count by 1
             dict[word] += 1
-        except:
+        # else, if the word does not exist in the dictionary
+        else:
+            # add the word to the dictionary, and set the word count to 1
             dict[word] = 1
 
-sorted = sorted(dict, key=lambda x: dict[x], reverse=True)
+# sort the words(keys) in the dictionary by the no. of occurrences(values)
+sortedKeys = sorted(dict, key=lambda x: dict[x], reverse=True)
 
+# print out the whole dictionary
 print(dict, "\n")
+
+# print Top x of most frequently used words
 x = 20
 print(f"Word Count Ranking Top {x}: ")
-for i in sorted:
+for i in sortedKeys:
     if x > 0:
         x -= 1
         print(f"{i}  |  {dict[i]}")
     else:
         break
+
+# print no. of total words and unique words
 print(f"Total Word Count: {totalWordCount}")
 print(f"Number of Unique Words: {len(dict)}")
