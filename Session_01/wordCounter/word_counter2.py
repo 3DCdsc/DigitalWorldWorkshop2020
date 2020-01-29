@@ -42,9 +42,9 @@ for line in document:
         word = stripForWord(word)
         if word == "":
             continue
-        x = len(word) - 1
-        if word[x] not in string.ascii_letters:
-            word = word[0:x]
+        # x = len(word) - 1
+        # if word[x] not in string.ascii_letters:
+        #     word = word[0:x]
 
         try:
             dict[word] += 1

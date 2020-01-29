@@ -13,19 +13,20 @@ def stripForWord(word):
 
 for line in document:
     for word in line.split():
-        totalWordCount += 1
-        word = stripForWord(word)
+        # skip none
         if word == "":
             continue
-        x = len(word) - 1
-        if word[x] not in string.ascii_letters:
-            word = word[0:x]
+        # counting total words
+        totalWordCount += 1
+        # clean up
+        word = stripForWord(word)
 
+
+        # counting unique word
         try:
             dict[word] += 1
         except:
             dict[word] = 1
-
 
 sorted = sorted(dict, key=lambda x: dict[x], reverse=True)
 

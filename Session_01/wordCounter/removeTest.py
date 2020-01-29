@@ -46,7 +46,7 @@ print(removePunctuations("thisidfhsdf\'") == "thisidfhsdf")
 
 def stripForWord(word):
     return word.lower().strip().strip(string.punctuation).capitalize()
-print("?" == "?")
+
 
 print(stripForWord("       {thisidfhsdf}") == "Thisidfhsdf")
 print(stripForWord("{thisidfhsdf     ") == "Thisidfhsdf")
